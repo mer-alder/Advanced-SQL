@@ -1,0 +1,1 @@
+-- Check back on 10/26/2023 to find the code from our week one live coding exercise

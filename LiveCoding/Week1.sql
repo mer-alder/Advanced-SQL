@@ -6,8 +6,8 @@ with customer_to_store as (
         store_id,
         specialty,
         round(st_distance(s.geo_location, c.address_geo_location) / 1609, 2) as distance
-    from customers as c
-    join stores as s),
+    from chicago_grocery.product_analytics.customers as c
+    join chicago_grocery.product_analytics.stores as s),
 
 distance_rank as (
     select
@@ -28,7 +28,7 @@ spend_totals as (
             when store_rank > 1 then specialty_spend
         else 0
         end) as not_primary_special
-    from purchases as p
+    from chicago_grocery.product_analytics.purchases as p
     join distance_rank as d on p.store_id = d.store_id and p.customer_id = d.customer_id
     group by p.store_id),
 
@@ -38,7 +38,7 @@ results as (
         round(special_revenue / total_revenue * 100, 2) as percent_special,
         round(not_primary_special / total_revenue * 100, 2) as percent_not_primary_special
     from spend_totals as t
-    join stores as s on t.store_id = s.store_id
+    join chicago_grocery.product_analytics.stores as s on t.store_id = s.store_id
     order by percent_special desc)
 
 

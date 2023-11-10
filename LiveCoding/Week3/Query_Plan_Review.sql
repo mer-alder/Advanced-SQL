@@ -1,5 +1,7 @@
 /* Uncomment the statements below to evaluate the query profile. */
 
+/* Run this statement so your session will ignore cached results from your classmates' queries */
+ALTER SESSION SET USE_CACHED_RESULT = TRUE;
 
 /* The customer_address table has a clustering key on state_code, city
    Review the query plan for these statements to determine whether our SQL syntax uses the clustering key. */

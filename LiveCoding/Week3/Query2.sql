@@ -1,6 +1,7 @@
 -- Query 2:  Select a random winner for each city and location_type in Texas
 -- Return one customer per city, per location_type it must be random, return city, location_type, customer_id
 -- we want to ensure the result is truly providing a random customer (vs. sorting and returning a specific result)
+
 with tx_customer_list as (
     select
         customer_id,
